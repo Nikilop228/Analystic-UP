@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+  <title>UP</title>
+
+  <style>
+
+    body {
+
+      margin: 0;
+
+      min-height: 100vh;
+
+      display: grid;
+
+      place-items: center;
+
+      background: #10131c;
+
+      color: white;
+
+      font-family: Arial, sans-serif;
+
+      text-align: center;
+
+    }
+
+    .app { padding: 28px; width: 85%; max-width: 360px; }
+
+    h1 { letter-spacing: 5px; color: #a78bfa; }
+
+    .number { font-size: 76px; font-weight: bold; margin: 35px 0; }
+
+    button {
+
+      width: 100%; padding: 16px; border: 0;
+
+      border-radius: 14px; background: #8b5cf6;
+
+      color: white; font-size: 17px; font-weight: bold;
+
+    }
+
+    p { color: #b9bdca; font-size: 13px; line-height: 1.5; }
+
+  </style>
+
+</head>
+
+<body>
+
+  <main class="app">
+
+    <h1>UP</h1>
+
+    <p>Генератор случайных чисел</p>
+
+    <div class="number" id="number">—%</div>
+
+    <button onclick="generate()">🎲 Сгенерировать</button>
+
+    <p>Число случайное и не является прогнозом реального события.</p>
+
+  </main>
+
+  <script>
+
+    const tg = window.Telegram?.WebApp;
+
+    tg?.ready();
+
+    tg?.expand();
+
+    function generate() {
+
+      document.getElementById("number").textContent =
+
+        Math.floor(Math.random() * 100) + 1 + "%";
+
+    }
+
+  </script>
+
+</body>
+
+</html>
