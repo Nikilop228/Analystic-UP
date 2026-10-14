@@ -6,13 +6,17 @@
 
   <meta charset="UTF-8">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport"
+
+        content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <title>UP! — Upgrade</title>
 
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
-  <title>UP</title>
-
   <style>
+
+    * { box-sizing: border-box; }
 
     body {
 
@@ -20,37 +24,239 @@
 
       min-height: 100vh;
 
-      display: grid;
+      background:
 
-      place-items: center;
+        radial-gradient(ellipse at 50% 25%, #25205a 0%, transparent 55%),
 
-      background: #10131c;
+        #090914;
 
-      color: white;
+      color: #fff;
 
       font-family: Arial, sans-serif;
 
       text-align: center;
 
-    }
+      padding: 24px 18px;
 
-    .app { padding: 28px; width: 85%; max-width: 360px; }
-
-    h1 { letter-spacing: 5px; color: #a78bfa; }
-
-    .number { font-size: 76px; font-weight: bold; margin: 35px 0; }
-
-    button {
-
-      width: 100%; padding: 16px; border: 0;
-
-      border-radius: 14px; background: #8b5cf6;
-
-      color: white; font-size: 17px; font-weight: bold;
+      overflow-x: hidden;
 
     }
 
-    p { color: #b9bdca; font-size: 13px; line-height: 1.5; }
+    .app {
+
+      max-width: 420px;
+
+      margin: 0 auto;
+
+    }
+
+    .logo {
+
+      font-size: 34px;
+
+      font-weight: 900;
+
+      letter-spacing: 3px;
+
+      margin-top: 12px;
+
+    }
+
+    .logo span { color: #a78bfa; }
+
+    .subtitle {
+
+      color: #9997bb;
+
+      font-size: 13px;
+
+      margin-top: 8px;
+
+    }
+
+    .panel {
+
+      margin-top: 34px;
+
+      padding: 26px 18px;
+
+      border: 1px solid #39305e;
+
+      border-radius: 26px;
+
+      background: linear-gradient(160deg, #17152c, #10101e);
+
+      box-shadow: 0 0 35px #7650ff15;
+
+    }
+
+    .label {
+
+      font-size: 12px;
+
+      color: #aaa6cb;
+
+      letter-spacing: 2px;
+
+      font-weight: bold;
+
+    }
+
+    .circle {
+
+      width: 220px;
+
+      height: 220px;
+
+      margin: 26px auto;
+
+      border-radius: 50%;
+
+      display: grid;
+
+      place-items: center;
+
+      background: conic-gradient(
+
+        #a78bfa 0deg, #5d48e8 100deg,
+
+        #24213e 100deg, #24213e 360deg
+
+      );
+
+      position: relative;
+
+      box-shadow: 0 0 35px #7855ff35;
+
+      transition: transform .3s, filter .3s;
+
+    }
+
+    .circle::before {
+
+      content: "";
+
+      position: absolute;
+
+      inset: 9px;
+
+      background: #111020;
+
+      border: 1px solid #37305b;
+
+      border-radius: 50%;
+
+    }
+
+    .inside {
+
+      position: relative;
+
+      z-index: 1;
+
+    }
+
+    .percent {
+
+      font-size: 57px;
+
+      font-weight: 900;
+
+      letter-spacing: -2px;
+
+    }
+
+    .percent span {
+
+      color: #b8a5ff;
+
+      font-size: 30px;
+
+    }
+
+    .status {
+
+      color: #aaa6cb;
+
+      font-size: 12px;
+
+      margin-top: 8px;
+
+    }
+
+    .button {
+
+      width: 100%;
+
+      padding: 18px 12px;
+
+      border: none;
+
+      border-radius: 15px;
+
+      color: white;
+
+      font-weight: 900;
+
+      font-size: 15px;
+
+      letter-spacing: 1px;
+
+      background: linear-gradient(100deg, #7047ff, #a855f7);
+
+      box-shadow: 0 7px 25px #854dff35;
+
+      cursor: pointer;
+
+      transition: transform .15s, opacity .15s;
+
+    }
+
+    .button:active { transform: scale(.97); }
+
+    .button:disabled { opacity: .65; }
+
+    .hint {
+
+      color: #77758f;
+
+      font-size: 11px;
+
+      line-height: 1.5;
+
+      margin-top: 18px;
+
+    }
+
+    .footer {
+
+      margin-top: 24px;
+
+      font-size: 11px;
+
+      color: #5f5d78;
+
+      letter-spacing: 2px;
+
+    }
+
+    .rolling { animation: pulse .35s infinite alternate; }
+
+    @keyframes pulse {
+
+      from { transform: scale(1); filter: brightness(1); }
+
+      to { transform: scale(1.035); filter: brightness(1.5); }
+
+    }
+
+    @media (max-width: 360px) {
+
+      .circle { width: 190px; height: 190px; }
+
+      .percent { font-size: 49px; }
+
+    }
 
   </style>
 
@@ -60,15 +266,46 @@
 
   <main class="app">
 
-    <h1>UP</h1>
+    <div class="logo">UP<span>!</span></div>
 
-    <p>Генератор случайных чисел</p>
+    <div class="subtitle">ТВОЯ УДАЧА — ТВОИ ПРАВИЛА</div>
 
-    <div class="number" id="number">—%</div>
+    <section class="panel">
 
-    <button onclick="generate()">🎲 Сгенерировать</button>
+      <div class="label">UPGRADE CHANCE</div>
 
-    <p>Число случайное и не является прогнозом реального события.</p>
+      <div class="circle" id="circle">
+
+        <div class="inside">
+
+          <div class="percent">
+
+            <span id="number">--</span><span>%</span>
+
+          </div>
+
+          <div class="status" id="status">ГОТОВ К АПГРЕЙДУ?</div>
+
+        </div>
+
+      </div>
+
+      <button class="button" id="roll">
+
+        ✦ ИСПЫТАТЬ УДАЧУ
+
+      </button>
+
+      <div class="hint">
+
+        Нажми кнопку, чтобы получить случайный процент.<br>
+
+        Результат предназначен для развлечения.
+
+      </div>
+
+    </section>
+<div class="footer">UP! MINI APP · 2026</div>
 
   </main>
 
@@ -80,13 +317,79 @@
 
     tg?.expand();
 
-    function generate() {
+    if (tg?.themeParams?.bg_color) {
 
-      document.getElementById("number").textContent =
+      document.body.style.backgroundColor =
 
-        Math.floor(Math.random() * 100) + 1 + "%";
+        tg.themeParams.bg_color;
 
     }
+
+    const button = document.getElementById("roll");
+
+    const number = document.getElementById("number");
+
+    const status = document.getElementById("status");
+
+    const circle = document.getElementById("circle");
+
+    button.addEventListener("click", () => {
+
+      button.disabled = true;
+
+      button.textContent = "⟳  ГЕНЕРАЦИЯ...";
+
+      status.textContent = "ИЩЕМ ТВОЙ ПРОЦЕНТ";
+
+      circle.classList.add("rolling");
+
+      let ticks = 0;
+
+      const timer = setInterval(() => {
+
+        number.textContent = Math.floor(Math.random() * 100) + 1;
+
+        ticks++;
+
+        if (ticks >= 15) {
+
+          clearInterval(timer);
+
+          const result = Math.floor(Math.random() * 100) + 1;
+
+          number.textContent = result;
+
+          circle.style.background =
+
+            `conic-gradient(#a78bfa ${result * 3.6}deg,
+
+            #24213e ${result * 3.6}deg)`;
+
+          status.textContent =
+
+            result >= 75 ? "ТВОЙ УСПЕШНЫЙ ПРОЦЕНТ ✦" :
+
+            result >= 40 ? "ТВОЙ УСПЕШНЫЙ ПРОЦЕНТ" :
+
+            "ПОПРОБУЙ ЕЩЁ РАЗ";
+
+          circle.classList.remove("rolling");
+
+          button.disabled = false;
+
+          button.textContent = "↻  ЕЩЁ РАЗ";
+
+          if (tg?.HapticFeedback) {
+
+            tg.HapticFeedback.impactOccurred("medium");
+
+          }
+
+        }
+
+      }, 80);
+
+    });
 
   </script>
 
