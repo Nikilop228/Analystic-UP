@@ -4,394 +4,1180 @@
 
 <head>
 
-  <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-  <meta name="viewport"
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-        content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#090812">
 
-  <title>UP! — Upgrade</title>
+<title>UP! — Skin Upgrade</title>
 
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
 
-  <style>
+<style>
 
-    * { box-sizing: border-box; }
+:root {
 
-    body {
+  --bg: #090812;
 
-      margin: 0;
+  --panel: #12101f;
 
-      min-height: 100vh;
+  --panel2: #19152b;
 
-      background:
+  --purple: #8b5cf6;
 
-        radial-gradient(ellipse at 50% 25%, #25205a 0%, transparent 55%),
+  --purple2: #b38aff;
 
-        #090914;
+  --text: #f6f2ff;
 
-      color: #fff;
+  --muted: #9690ae;
 
-      font-family: Arial, sans-serif;
+  --border: #302644;
 
-      text-align: center;
+  --green: #55e6a5;
 
-      padding: 24px 18px;
+}
 
-      overflow-x: hidden;
+* {
 
-    }
+  box-sizing: border-box;
 
-    .app {
+  -webkit-tap-highlight-color: transparent;
 
-      max-width: 420px;
+}
 
-      margin: 0 auto;
+body {
 
-    }
+  margin: 0;
 
-    .logo {
+  min-height: 100vh;
 
-      font-size: 34px;
+  background:
 
-      font-weight: 900;
+    radial-gradient(ellipse at 50% -10%, #422080 0%, transparent 45%),
 
-      letter-spacing: 3px;
+    var(--bg);
 
-      margin-top: 12px;
+  color: var(--text);
 
-    }
+  font-family: Inter, -apple-system, BlinkMacSystemFont,
 
-    .logo span { color: #a78bfa; }
+    "Segoe UI", Arial, sans-serif;
 
-    .subtitle {
+}
 
-      color: #9997bb;
+button {
 
-      font-size: 13px;
+  font: inherit;
 
-      margin-top: 8px;
+}
 
-    }
+.app {
 
-    .panel {
+  width: 100%;
 
-      margin-top: 34px;
+  max-width: 560px;
 
-      padding: 26px 18px;
+  margin: 0 auto;
 
-      border: 1px solid #39305e;
+  padding: 0 16px 30px;
 
-      border-radius: 26px;
+}
 
-      background: linear-gradient(160deg, #17152c, #10101e);
+.header {
 
-      box-shadow: 0 0 35px #7650ff15;
+  display: flex;
 
-    }
+  align-items: center;
 
-    .label {
+  justify-content: space-between;
 
-      font-size: 12px;
+  padding: 23px 0 20px;
 
-      color: #aaa6cb;
+  border-bottom: 1px solid #ffffff0c;
 
-      letter-spacing: 2px;
+}
 
-      font-weight: bold;
+.logo {
 
-    }
+  font-size: 31px;
 
-    .circle {
+  font-weight: 1000;
 
-      width: 220px;
+  font-style: italic;
 
-      height: 220px;
+  letter-spacing: -2px;
 
-      margin: 26px auto;
+}
 
-      border-radius: 50%;
+.logo span {
 
-      display: grid;
+  color: var(--purple2);
 
-      place-items: center;
+}
 
-      background: conic-gradient(
+.online {
 
-        #a78bfa 0deg, #5d48e8 100deg,
+  display: flex;
 
-        #24213e 100deg, #24213e 360deg
+  align-items: center;
 
-      );
+  gap: 7px;
 
-      position: relative;
+  color: var(--muted);
 
-      box-shadow: 0 0 35px #7855ff35;
+  font-size: 11px;
 
-      transition: transform .3s, filter .3s;
+}
 
-    }
+.dot {
 
-    .circle::before {
+  width: 7px;
 
-      content: "";
+  height: 7px;
 
-      position: absolute;
+  background: var(--green);
 
-      inset: 9px;
+  border-radius: 50%;
 
-      background: #111020;
+  box-shadow: 0 0 10px #55e6a5;
 
-      border: 1px solid #37305b;
+}
 
-      border-radius: 50%;
+.tabs {
 
-    }
+  display: flex;
 
-    .inside {
+  gap: 7px;
 
-      position: relative;
+  margin: 17px 0;
 
-      z-index: 1;
+}
 
-    }
+.tab {
 
-    .percent {
+  flex: 1;
 
-      font-size: 57px;
+  border: 1px solid var(--border);
 
-      font-weight: 900;
+  background: #12101d;
 
-      letter-spacing: -2px;
+  color: var(--muted);
 
-    }
+  border-radius: 11px;
 
-    .percent span {
+  padding: 12px 5px;
 
-      color: #b8a5ff;
+  font-size: 12px;
 
-      font-size: 30px;
+  font-weight: 700;
 
-    }
+}
 
-    .status {
+.tab.active {
 
-      color: #aaa6cb;
+  color: white;
 
-      font-size: 12px;
+  background: #342052;
 
-      margin-top: 8px;
+  border-color: var(--purple);
 
-    }
+  box-shadow: inset 0 -2px var(--purple);
 
-    .button {
+}
 
-      width: 100%;
+.hero {
 
-      padding: 18px 12px;
+  text-align: center;
 
-      border: none;
+  padding: 20px 8px 25px;
 
-      border-radius: 15px;
+}
 
-      color: white;
+.crown {
 
-      font-weight: 900;
+  font-size: 30px;
 
-      font-size: 15px;
+  filter: drop-shadow(0 0 12px #a855f7);
 
-      letter-spacing: 1px;
+}
 
-      background: linear-gradient(100deg, #7047ff, #a855f7);
+.hero h1 {
 
-      box-shadow: 0 7px 25px #854dff35;
+  margin: 5px 0;
 
-      cursor: pointer;
+  font-size: clamp(39px, 12vw, 54px);
 
-      transition: transform .15s, opacity .15s;
+  font-weight: 1000;
 
-    }
+  font-style: italic;
 
-    .button:active { transform: scale(.97); }
+  letter-spacing: -2px;
 
-    .button:disabled { opacity: .65; }
+  text-shadow: 0 0 35px #9b5cff65;
 
-    .hint {
+}
 
-      color: #77758f;
+.hero h1 span {
 
-      font-size: 11px;
+  color: var(--purple2);
 
-      line-height: 1.5;
+}
 
-      margin-top: 18px;
+.hero p {
 
-    }
+  margin: 8px 0 0;
 
-    .footer {
+  color: var(--muted);
 
-      margin-top: 24px;
+  font-size: 13px;
 
-      font-size: 11px;
+}
 
-      color: #5f5d78;
+.card {
 
-      letter-spacing: 2px;
+  background: linear-gradient(145deg, #171326, #0f0d19);
 
-    }
+  border: 1px solid var(--border);
 
-    .rolling { animation: pulse .35s infinite alternate; }
+  border-radius: 20px;
 
-    @keyframes pulse {
+  padding: 17px;
 
-      from { transform: scale(1); filter: brightness(1); }
+  box-shadow: 0 12px 45px #00000035;
 
-      to { transform: scale(1.035); filter: brightness(1.5); }
+}
 
-    }
+.section-label {
 
-    @media (max-width: 360px) {
+  color: var(--muted);
 
-      .circle { width: 190px; height: 190px; }
+  font-size: 11px;
 
-      .percent { font-size: 49px; }
+  font-weight: 800;
 
-    }
+  letter-spacing: 1.4px;
 
-  </style>
+  text-transform: uppercase;
+
+  margin-bottom: 12px;
+
+}
+
+.upgrade-grid {
+
+  display: grid;
+
+  grid-template-columns: minmax(0, 1fr) 34px minmax(0, 1fr);
+
+  align-items: center;
+
+  gap: 7px;
+
+}
+
+.skin {
+
+  min-width: 0;
+
+  padding: 10px 8px;
+
+  background: linear-gradient(160deg, #201a34, #100e19);
+
+  border: 1px solid #44315e;
+
+  border-radius: 13px;
+
+  text-align: center;
+
+  min-height: 153px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+}
+
+.skin.target {
+
+  border-color: #8354d8;
+
+  background: linear-gradient(160deg, #281a40, #100e19);
+
+}
+
+.skin-icon {
+
+  font-size: 35px;
+
+  margin-bottom: 12px;
+
+  filter: drop-shadow(0 0 12px #9860ff65);
+
+}
+
+.skin-name {
+
+  font-size: 12px;
+
+  font-weight: 800;
+
+  overflow-wrap: anywhere;
+
+}
+
+.skin-desc {
+
+  font-size: 10px;
+
+  color: var(--muted);
+
+  margin-top: 5px;
+
+}
+
+.arrow {
+
+  text-align: center;
+
+  color: var(--purple2);
+
+  font-size: 25px;
+
+  font-weight: 900;
+
+}
+
+.chance-wrap {
+
+  text-align: center;
+
+  padding: 29px 0 22px;
+
+}
+
+.ring {
+
+  --angle: 0deg;
+
+  width: 205px;
+
+  height: 205px;
+
+  max-width: 70vw;
+
+  max-height: 70vw;
+
+  aspect-ratio: 1;
+
+  margin: 0 auto;
+
+  border-radius: 50%;
+
+  padding: 9px;
+
+  position: relative;
+
+  background: conic-gradient(
+
+    from -90deg,
+
+    var(--purple2) 0deg,
+
+    var(--purple) var(--angle),
+
+    #292139 var(--angle),
+
+    #292139 360deg
+
+  );
+box-shadow: 0 0 35px #8b5cf62a, inset 0 0 12px #ffffff08;
+
+  transition: filter .2s;
+
+}
+
+.ring::before {
+
+  content: "";
+
+  position: absolute;
+
+  inset: 8px;
+
+  border-radius: 50%;
+
+  background: radial-gradient(circle at 50% 35%, #24163b, #0e0c18 72%);
+
+  border: 1px solid #ffffff12;
+
+}
+
+.ring-inner {
+
+  position: relative;
+
+  z-index: 1;
+
+  height: 100%;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+}
+
+.chance-label {
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  color: var(--muted);
+
+  letter-spacing: 1.5px;
+
+}
+
+.percent {
+
+  font-size: clamp(40px, 12vw, 49px);
+
+  font-weight: 1000;
+
+  letter-spacing: -2px;
+
+  margin: 6px 0;
+
+  text-shadow: 0 0 22px #a855f765;
+
+}
+
+.percent small {
+
+  font-size: 24px;
+
+  color: var(--purple2);
+
+}
+
+.ring-status {
+
+  color: var(--purple2);
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  letter-spacing: 1px;
+
+}
+
+.main-button {
+
+  display: block;
+
+  width: 100%;
+
+  border: 0;
+
+  border-radius: 13px;
+
+  padding: 17px 12px;
+
+  background: linear-gradient(100deg, #7540eb, #a855f7);
+
+  color: white;
+
+  font-size: 14px;
+
+  font-weight: 900;
+
+  letter-spacing: 1px;
+
+  box-shadow: 0 7px 25px #8b5cf637, inset 0 1px #ffffff30;
+
+  cursor: pointer;
+
+  transition: transform .15s, opacity .2s;
+
+}
+
+.main-button:active {
+
+  transform: scale(.98);
+
+}
+
+.main-button:disabled {
+
+  opacity: .7;
+
+  cursor: wait;
+
+}
+
+.note {
+
+  color: #77718e;
+
+  font-size: 10px;
+
+  line-height: 1.6;
+
+  text-align: center;
+
+  margin: 13px 4px 2px;
+
+}
+
+.result {
+
+  display: none;
+
+  margin-top: 15px;
+
+  padding: 13px;
+
+  text-align: center;
+
+  border-radius: 12px;
+
+  background: #8b5cf612;
+
+  border: 1px solid #8b5cf638;
+
+  font-size: 12px;
+
+  line-height: 1.7;
+
+}
+
+.result.show {
+
+  display: block;
+
+  animation: appear .3s ease;
+
+}
+
+.result strong {
+
+  color: var(--purple2);
+
+}
+
+.bottom-stats {
+
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 10px;
+
+  margin-top: 13px;
+
+}
+
+.stat {
+
+  padding: 14px;
+
+  background: #13111f;
+
+  border: 1px solid #292239;
+
+  border-radius: 13px;
+
+}
+
+.stat-title {
+
+  color: var(--muted);
+
+  font-size: 10px;
+
+}
+
+.stat-value {
+
+  font-size: 20px;
+
+  font-weight: 900;
+
+  margin-top: 6px;
+
+}
+
+.history {
+
+  margin-top: 17px;
+
+}
+
+.history-head {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  gap: 8px;
+
+  margin-bottom: 12px;
+
+}
+
+.history-head strong {
+
+  font-size: 13px;
+
+}
+
+.clear {
+
+  border: 0;
+
+  background: none;
+
+  color: var(--muted);
+
+  font-size: 11px;
+
+  cursor: pointer;
+
+}
+
+.history-list {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 7px;
+
+}
+
+.history-item {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  gap: 10px;
+
+  background: #141120;
+
+  border: 1px solid #292239;
+
+  border-radius: 11px;
+
+  padding: 12px;
+
+  font-size: 12px;
+
+}
+
+.history-item span {
+
+  color: var(--muted);
+
+}
+
+.history-item b {
+
+  color: var(--purple2);
+
+}
+
+.empty {
+
+  padding: 19px 10px;
+
+  text-align: center;
+
+  color: #716a87;
+
+  font-size: 12px;
+
+}
+
+.footer {
+
+  text-align: center;
+
+  color: #59536f;
+
+  font-size: 10px;
+
+  letter-spacing: 2px;
+
+  padding: 25px 0 5px;
+
+}
+
+@keyframes appear {
+
+  from { opacity: 0; transform: translateY(5px); }
+
+  to { opacity: 1; transform: translateY(0); }
+
+}
+
+@keyframes glow {
+
+  from { filter: brightness(1); }
+
+  to { filter: brightness(1.35); }
+
+}
+
+.ring.spinning {
+
+  animation: glow .35s infinite alternate;
+
+}
+
+@media (max-width: 370px) {
+
+  .app { padding-left: 11px; padding-right: 11px; }
+
+  .card { padding: 13px; }
+
+  .upgrade-grid { grid-template-columns: minmax(0, 1fr) 22px minmax(0, 1fr); }
+
+  .skin { padding: 8px 4px; min-height: 140px; }
+
+  .skin-name { font-size: 11px; }
+
+  .ring { width: 180px; height: 180px; }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  *, *::before, *::after {
+
+    animation-duration: .01ms !important;
+
+    transition-duration: .01ms !important;
+
+  }
+
+}
+
+</style>
 
 </head>
 
 <body>
 
-  <main class="app">
+<div class="app">
+
+  <header class="header">
 
     <div class="logo">UP<span>!</span></div>
+<div class="online"><span class="dot"></span> MINI APP</div>
 
-    <div class="subtitle">ТВОЯ УДАЧА — ТВОИ ПРАВИЛА</div>
+  </header>
 
-    <section class="panel">
+  <nav class="tabs">
 
-      <div class="label">UPGRADE CHANCE</div>
+    <button class="tab active" type="button">⚡ UP!</button>
 
-      <div class="circle" id="circle">
+    <button class="tab" type="button" id="chanceTab">◉ Шанс</button>
 
-        <div class="inside">
+    <button class="tab" type="button" id="historyTab">◷ История</button>
 
-          <div class="percent">
+  </nav>
 
-            <span id="number">--</span><span>%</span>
+  <section class="hero">
 
-          </div>
+    <div class="crown">♛</div>
 
-          <div class="status" id="status">ГОТОВ К АПГРЕЙДУ?</div>
+    <h1>UP<span>!</span></h1>
+
+    <p>Попробуй удачу и испытай свой шанс</p>
+
+  </section>
+
+  <main>
+
+    <section class="card">
+
+      <div class="section-label">✦ · АПГРЕЙД</div>
+
+      <div class="upgrade-grid">
+
+        <div class="skin">
+
+          <div class="skin-icon">🔫</div>
+
+          <div class="skin-name">ТВОЙ СКИН</div>
+
+          <div class="skin-desc">Начальный уровень</div>
+
+        </div>
+
+        <div class="arrow">➜</div>
+
+        <div class="skin target">
+
+          <div class="skin-icon">💎</div>
+
+          <div class="skin-name">UPGRADE</div>
+
+          <div class="skin-desc">Новая цель</div>
 
         </div>
 
       </div>
 
-      <button class="button" id="roll">
+      <div class="chance-wrap">
 
-        ✦ ИСПЫТАТЬ УДАЧУ
+        <div class="ring" id="ring">
+
+          <div class="ring-inner">
+
+            <div class="chance-label">ТВОЙ ШАНС</div>
+
+            <div class="percent">
+
+              <span id="percent">--</span><small>%</small>
+
+            </div>
+
+            <div class="ring-status" id="ringStatus">READY TO UP</div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <button class="main-button" id="upgrade" type="button">
+
+        ⚡ ИСПЫТАТЬ УДАЧУ
 
       </button>
 
-      <div class="hint">
+      <div class="note">
 
-        Нажми кнопку, чтобы получить случайный процент.<br>
+        Демонстрационная случайная генерация.<br>
 
-        Результат предназначен для развлечения.
+        Процент не является реальной вероятностью выигрыша.
+
+      </div>
+
+      <div class="result" id="result" aria-live="polite"></div>
+
+    </section>
+
+    <div class="bottom-stats">
+
+      <div class="stat">
+
+        <div class="stat-title">ПОПЫТКИ</div>
+
+        <div class="stat-value" id="attempts">0</div>
+
+      </div>
+
+      <div class="stat">
+
+        <div class="stat-title">ПОСЛЕДНИЙ РЕЗУЛЬТАТ</div>
+
+        <div class="stat-value" id="lastResult">—</div>
+
+      </div>
+
+    </div>
+
+    <section class="history card" id="history">
+
+      <div class="history-head">
+
+        <strong>◷ Последние попытки</strong>
+
+        <button class="clear" id="clearHistory" type="button">
+
+          Очистить
+
+        </button>
+
+      </div>
+
+      <div class="history-list" id="historyList">
+
+        <div class="empty">Здесь появятся твои результаты</div>
 
       </div>
 
     </section>
-<div class="footer">UP! MINI APP · 2026</div>
 
   </main>
 
-  <script>
+  <footer class="footer">UP! · UPGRADE YOUR STYLE</footer>
 
-    const tg = window.Telegram?.WebApp;
+</div>
+
+<script>
+
+(() => {
+
+  const tg = window.Telegram?.WebApp;
+
+  try {
 
     tg?.ready();
 
     tg?.expand();
 
-    if (tg?.themeParams?.bg_color) {
+  } catch (_) {}
 
-      document.body.style.backgroundColor =
+  const $ = id => document.getElementById(id);
 
-        tg.themeParams.bg_color;
+  const ring = $("ring");
+
+  const percent = $("percent");
+
+  const ringStatus = $("ringStatus");
+
+  const button = $("upgrade");
+
+  const resultBox = $("result");
+
+  const attemptsEl = $("attempts");
+
+  const lastResultEl = $("lastResult");
+
+  const historyList = $("historyList");
+
+  let busy = false;
+
+  let attempts = 0;
+
+  let lastResult = null;
+
+  let history = [];
+
+  function setChance(value) {
+
+    percent.textContent = value;
+
+    ring.style.setProperty("--angle", (value * 3.6) + "deg");
+
+  }
+
+  function randomPercent() {
+
+    return Math.floor(Math.random() * 100) + 1;
+
+  }
+
+  function renderHistory() {
+
+    historyList.replaceChildren();
+
+    if (history.length === 0) {
+
+      const empty = document.createElement("div");
+
+      empty.className = "empty";
+
+      empty.textContent = "Здесь появятся твои результаты";
+
+      historyList.appendChild(empty);
+
+      return;
 
     }
 
-    const button = document.getElementById("roll");
+    history.forEach((value, index) => {
 
-    const number = document.getElementById("number");
+      const row = document.createElement("div");
 
-    const status = document.getElementById("status");
+      row.className = "history-item";
 
-    const circle = document.getElementById("circle");
+      const left = document.createElement("span");
 
-    button.addEventListener("click", () => {
+      left.textContent = "Попытка №" + (attempts - index);
 
-      button.disabled = true;
+      const right = document.createElement("b");
 
-      button.textContent = "⟳  ГЕНЕРАЦИЯ...";
+      right.textContent = value + "%";
 
-      status.textContent = "ИЩЕМ ТВОЙ ПРОЦЕНТ";
+      row.append(left, right);
 
-      circle.classList.add("rolling");
-
-      let ticks = 0;
-
-      const timer = setInterval(() => {
-
-        number.textContent = Math.floor(Math.random() * 100) + 1;
-
-        ticks++;
-
-        if (ticks >= 15) {
-
-          clearInterval(timer);
-
-          const result = Math.floor(Math.random() * 100) + 1;
-
-          number.textContent = result;
-
-          circle.style.background =
-
-            `conic-gradient(#a78bfa ${result * 3.6}deg,
-
-            #24213e ${result * 3.6}deg)`;
-
-          status.textContent =
-
-            result >= 75 ? "ТВОЙ УСПЕШНЫЙ ПРОЦЕНТ ✦" :
-
-            result >= 40 ? "ТВОЙ УСПЕШНЫЙ ПРОЦЕНТ" :
-
-            "ПОПРОБУЙ ЕЩЁ РАЗ";
-
-          circle.classList.remove("rolling");
-
-          button.disabled = false;
-
-          button.textContent = "↻  ЕЩЁ РАЗ";
-
-          if (tg?.HapticFeedback) {
-
-            tg.HapticFeedback.impactOccurred("medium");
-
-          }
-
-        }
-
-      }, 80);
+      historyList.appendChild(row);
 
     });
 
-  </script>
+  }
+
+  function showResult(value) {
+resultBox.replaceChildren();
+
+    const title = document.createElement("strong");
+
+    title.textContent = value >= 75
+
+      ? "✦ ВЫСОКИЙ ПРОЦЕНТ!"
+
+      : value >= 40
+
+        ? "⚡ НЕПЛОХОЙ РЕЗУЛЬТАТ"
+
+        : "✧ ПОПРОБУЙ ЕЩЁ РАЗ";
+
+    const line = document.createElement("div");
+
+    line.textContent = "Случайное число: " + value + "%";
+
+    resultBox.append(title, line);
+
+    resultBox.classList.add("show");
+
+  }
+
+  function runUpgrade() {
+
+    if (busy) return;
+
+    busy = true;
+
+    button.disabled = true;
+
+    button.textContent = "⟳ ГЕНЕРАЦИЯ...";
+
+    ringStatus.textContent = "CALCULATING...";
+
+    ring.classList.add("spinning");
+
+    resultBox.classList.remove("show");
+
+    try {
+
+      tg?.HapticFeedback?.impactOccurred("light");
+
+    } catch (_) {}
+
+    let ticks = 0;
+
+    const animation = setInterval(() => {
+
+      setChance(randomPercent());
+
+      ticks++;
+
+      if (ticks >= 18) {
+
+        clearInterval(animation);
+
+        const value = randomPercent();
+
+        setChance(value);
+
+        attempts++;
+
+        lastResult = value;
+
+        history.unshift(value);
+
+        history = history.slice(0, 8);
+
+        attemptsEl.textContent = attempts;
+
+        lastResultEl.textContent = value + "%";
+
+        ringStatus.textContent = "RESULT READY";
+
+        showResult(value);
+
+        renderHistory();
+
+        ring.classList.remove("spinning");
+
+        button.disabled = false;
+
+        button.textContent = "↻ ПОПРОБОВАТЬ ЕЩЁ";
+
+        busy = false;
+
+        try {
+
+          tg?.HapticFeedback?.impactOccurred("medium");
+
+        } catch (_) {}
+
+      }
+
+    }, 75);
+
+  }
+
+  button.addEventListener("click", runUpgrade);
+
+  $("chanceTab").addEventListener("click", () => {
+
+    document.querySelector(".chance-wrap").scrollIntoView({
+
+      behavior: "smooth",
+
+      block: "center"
+
+    });
+
+  });
+
+  $("historyTab").addEventListener("click", () => {
+
+    $("history").scrollIntoView({
+
+      behavior: "smooth",
+
+      block: "start"
+
+    });
+
+  });
+
+  $("clearHistory").addEventListener("click", () => {
+
+    history = [];
+
+    attempts = 0;
+
+    lastResult = null;
+
+    attemptsEl.textContent = "0";
+
+    lastResultEl.textContent = "—";
+
+    resultBox.classList.remove("show");
+
+    setChance("--");
+
+    ringStatus.textContent = "READY TO UP";
+
+    renderHistory();
+
+  });
+
+  setChance("--");
+
+})();
+
+</script>
 
 </body>
 
