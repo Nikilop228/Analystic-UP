@@ -4,1180 +4,1094 @@
 
 <head>
 
-<meta charset="UTF-8">
+  <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="theme-color" content="#090812">
+  <meta name="theme-color" content="#090711">
 
-<title>UP! — Skin Upgrade</title>
+  <title>UP! — CS2 Upgrade</title>
 
-<script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
-<style>
+  <style>
 
-:root {
+    * { box-sizing: border-box; }
 
-  --bg: #090812;
+    :root {
 
-  --panel: #12101f;
+      --bg: #090711;
 
-  --panel2: #19152b;
+      --panel: #151122;
 
-  --purple: #8b5cf6;
+      --purple: #a855f7;
 
-  --purple2: #b38aff;
+      --pink: #ec4899;
 
-  --text: #f6f2ff;
+      --text: #f8f5ff;
 
-  --muted: #9690ae;
+      --muted: #a49ab9;
 
-  --border: #302644;
+    }
 
-  --green: #55e6a5;
+    body {
 
-}
+      margin: 0;
 
-* {
+      min-height: 100vh;
 
-  box-sizing: border-box;
+      padding: 20px 16px 32px;
 
-  -webkit-tap-highlight-color: transparent;
+      color: var(--text);
 
-}
+      background:
 
-body {
+        radial-gradient(ellipse at 50% 0%, #39205b 0%, transparent 48%),
 
-  margin: 0;
+        var(--bg);
 
-  min-height: 100vh;
+      font-family: Arial, sans-serif;
 
-  background:
+    }
 
-    radial-gradient(ellipse at 50% -10%, #422080 0%, transparent 45%),
+    .app {
 
-    var(--bg);
+      width: 100%;
 
-  color: var(--text);
+      max-width: 460px;
 
-  font-family: Inter, -apple-system, BlinkMacSystemFont,
+      margin: 0 auto;
 
-    "Segoe UI", Arial, sans-serif;
+    }
 
-}
+    header {
 
-button {
+      display: flex;
 
-  font: inherit;
+      justify-content: space-between;
 
-}
+      align-items: center;
 
-.app {
+      margin-bottom: 28px;
 
-  width: 100%;
+    }
 
-  max-width: 560px;
+    .logo {
 
-  margin: 0 auto;
+      font-size: 29px;
 
-  padding: 0 16px 30px;
+      font-weight: 900;
 
-}
+      letter-spacing: -1px;
 
-.header {
+    }
 
-  display: flex;
+    .logo span { color: var(--purple); }
 
-  align-items: center;
+    .demo-tag {
 
-  justify-content: space-between;
+      font-size: 10px;
 
-  padding: 23px 0 20px;
+      padding: 7px 10px;
 
-  border-bottom: 1px solid #ffffff0c;
+      border: 1px solid #62408a;
 
-}
+      border-radius: 20px;
 
-.logo {
+      color: #d9b8ff;
 
-  font-size: 31px;
+      background: #241536;
 
-  font-weight: 1000;
+    }
 
-  font-style: italic;
+    .welcome {
 
-  letter-spacing: -2px;
+      text-align: center;
 
-}
+      margin-bottom: 24px;
 
-.logo span {
+    }
 
-  color: var(--purple2);
+    h1 {
 
-}
+      margin: 0 0 9px;
 
-.online {
+      font-size: 30px;
 
-  display: flex;
+    }
 
-  align-items: center;
+    .subtitle {
 
-  gap: 7px;
+      margin: 0;
 
-  color: var(--muted);
+      color: var(--muted);
 
-  font-size: 11px;
+      font-size: 14px;
 
-}
+      line-height: 1.5;
 
-.dot {
+    }
 
-  width: 7px;
+    .panel {
 
-  height: 7px;
+      padding: 18px;
 
-  background: var(--green);
+      border: 1px solid #342448;
 
-  border-radius: 50%;
+      border-radius: 20px;
 
-  box-shadow: 0 0 10px #55e6a5;
+      background: linear-gradient(150deg, #1b1429, #100d19);
 
-}
+      box-shadow: 0 10px 40px #0005;
 
-.tabs {
+    }
 
-  display: flex;
+    .select-button, .spin-button {
 
-  gap: 7px;
+      width: 100%;
 
-  margin: 17px 0;
+      padding: 16px;
 
-}
+      border: 0;
 
-.tab {
+      border-radius: 13px;
 
-  flex: 1;
+      color: white;
 
-  border: 1px solid var(--border);
+      font-size: 15px;
 
-  background: #12101d;
+      font-weight: 800;
 
-  color: var(--muted);
+      cursor: pointer;
 
-  border-radius: 11px;
+      background: linear-gradient(100deg, #9333ea, #d946ef);
 
-  padding: 12px 5px;
+      box-shadow: 0 5px 22px #9333ea40;
 
-  font-size: 12px;
+    }
 
-  font-weight: 700;
+    button:disabled {
 
-}
+      opacity: .6;
 
-.tab.active {
+      cursor: wait;
 
-  color: white;
+    }
 
-  background: #342052;
+    .hint {
 
-  border-color: var(--purple);
+      margin: 12px 0 0;
 
-  box-shadow: inset 0 -2px var(--purple);
+      color: var(--muted);
 
-}
+      text-align: center;
 
-.hero {
+      font-size: 12px;
 
-  text-align: center;
+      line-height: 1.5;
 
-  padding: 20px 8px 25px;
+    }
 
-}
+    .selected-card {
 
-.crown {
+      display: none;
 
-  font-size: 30px;
+      margin-top: 18px;
 
-  filter: drop-shadow(0 0 12px #a855f7);
+      padding: 15px;
 
-}
+      border: 1px solid #46315e;
 
-.hero h1 {
+      border-radius: 16px;
 
-  margin: 5px 0;
+      background: #0d0a15;
 
-  font-size: clamp(39px, 12vw, 54px);
+      text-align: center;
 
-  font-weight: 1000;
+    }
 
-  font-style: italic;
+    .selected-card.visible { display: block; }
 
-  letter-spacing: -2px;
+    .selected-card img {
 
-  text-shadow: 0 0 35px #9b5cff65;
+      width: 100%;
 
-}
+      height: 145px;
 
-.hero h1 span {
+      object-fit: contain;
 
-  color: var(--purple2);
+      margin: 6px 0 12px;
 
-}
+    }
 
-.hero p {
+    .skin-name {
 
-  margin: 8px 0 0;
+      font-size: 16px;
 
-  color: var(--muted);
+      font-weight: 800;
 
-  font-size: 13px;
+      overflow-wrap: anywhere;
 
-}
+    }
 
-.card {
+    .skin-label {
 
-  background: linear-gradient(145deg, #171326, #0f0d19);
+      margin-bottom: 8px;
 
-  border: 1px solid var(--border);
+      color: var(--muted);
 
-  border-radius: 20px;
+      font-size: 11px;
 
-  padding: 17px;
+      text-transform: uppercase;
 
-  box-shadow: 0 12px 45px #00000035;
+      letter-spacing: 1px;
 
-}
+    }
 
-.section-label {
+    .change-button {
 
-  color: var(--muted);
+      margin-top: 12px;
 
-  font-size: 11px;
+      padding: 9px 14px;
 
-  font-weight: 800;
+      color: #dfbaff;
 
-  letter-spacing: 1.4px;
+      border: 1px solid #68418c;
 
-  text-transform: uppercase;
+      border-radius: 10px;
 
-  margin-bottom: 12px;
+      background: #241536;
 
-}
+      cursor: pointer;
 
-.upgrade-grid {
+    }
 
-  display: grid;
+    #upgrade {
 
-  grid-template-columns: minmax(0, 1fr) 34px minmax(0, 1fr);
+      display: none;
 
-  align-items: center;
+      margin-top: 18px;
 
-  gap: 7px;
+    }
 
-}
+    #upgrade.visible { display: block; }
 
-.skin {
+    .section-title {
 
-  min-width: 0;
+      margin: 0 0 5px;
 
-  padding: 10px 8px;
+      font-size: 19px;
 
-  background: linear-gradient(160deg, #201a34, #100e19);
+      text-align: center;
 
-  border: 1px solid #44315e;
+    }
 
-  border-radius: 13px;
+    .section-subtitle {
 
-  text-align: center;
+      margin: 0 0 16px;
 
-  min-height: 153px;
+      color: var(--muted);
 
-  display: flex;
+      font-size: 12px;
 
-  flex-direction: column;
+      text-align: center;
 
-  justify-content: center;
+    }
 
-}
+    .wheel-wrap {
 
-.skin.target {
+      position: relative;
 
-  border-color: #8354d8;
+      width: 230px;
 
-  background: linear-gradient(160deg, #281a40, #100e19);
+      height: 230px;
 
-}
+      margin: 0 auto 18px;
 
-.skin-icon {
+    }
 
-  font-size: 35px;
+    .pointer {
 
-  margin-bottom: 12px;
+      position: absolute;
 
-  filter: drop-shadow(0 0 12px #9860ff65);
+      z-index: 3;
 
-}
+      top: -5px;
 
-.skin-name {
+      left: 50%;
 
-  font-size: 12px;
+      transform: translateX(-50%);
 
-  font-weight: 800;
+      width: 0;
 
-  overflow-wrap: anywhere;
+      height: 0;
 
-}
+      border-left: 13px solid transparent;
 
-.skin-desc {
+      border-right: 13px solid transparent;
 
-  font-size: 10px;
+      border-top: 25px solid #fff;
 
-  color: var(--muted);
+      filter: drop-shadow(0 2px 5px #000);
 
-  margin-top: 5px;
+    }
 
-}
+    .wheel {
 
-.arrow {
+      position: absolute;
+inset: 7px;
 
-  text-align: center;
+      border: 5px solid #39264e;
 
-  color: var(--purple2);
+      border-radius: 50%;
 
-  font-size: 25px;
+      background: conic-gradient(
 
-  font-weight: 900;
+        #a855f7 0deg 45deg,
 
-}
+        #27153e 45deg 90deg,
 
-.chance-wrap {
+        #ec4899 90deg 135deg,
 
-  text-align: center;
+        #27153e 135deg 180deg,
 
-  padding: 29px 0 22px;
+        #a855f7 180deg 225deg,
 
-}
+        #27153e 225deg 270deg,
 
-.ring {
+        #ec4899 270deg 315deg,
 
-  --angle: 0deg;
+        #27153e 315deg 360deg
 
-  width: 205px;
+      );
 
-  height: 205px;
+      box-shadow: 0 0 28px #a855f755, inset 0 0 18px #0008;
 
-  max-width: 70vw;
+      transition: transform 3.5s cubic-bezier(.12,.72,.12,1);
 
-  max-height: 70vw;
+    }
 
-  aspect-ratio: 1;
+    .wheel::after {
 
-  margin: 0 auto;
+      content: "";
 
-  border-radius: 50%;
+      position: absolute;
 
-  padding: 9px;
+      inset: 28%;
 
-  position: relative;
+      border: 3px solid #6f3b94;
 
-  background: conic-gradient(
+      border-radius: 50%;
 
-    from -90deg,
+      background: #100b19;
 
-    var(--purple2) 0deg,
+      box-shadow: 0 0 20px #0009;
 
-    var(--purple) var(--angle),
+    }
 
-    #292139 var(--angle),
+    .wheel-center {
 
-    #292139 360deg
+      position: absolute;
 
-  );
-box-shadow: 0 0 35px #8b5cf62a, inset 0 0 12px #ffffff08;
+      z-index: 2;
 
-  transition: filter .2s;
+      inset: 0;
 
-}
+      display: flex;
 
-.ring::before {
+      flex-direction: column;
 
-  content: "";
+      align-items: center;
 
-  position: absolute;
+      justify-content: center;
 
-  inset: 8px;
+      pointer-events: none;
 
-  border-radius: 50%;
+    }
 
-  background: radial-gradient(circle at 50% 35%, #24163b, #0e0c18 72%);
+    .chance {
 
-  border: 1px solid #ffffff12;
+      font-size: 30px;
 
-}
+      font-weight: 900;
 
-.ring-inner {
+    }
 
-  position: relative;
+    .chance-caption {
 
-  z-index: 1;
+      margin-top: 3px;
 
-  height: 100%;
+      color: #c9b5dc;
 
-  display: flex;
+      font-size: 10px;
 
-  flex-direction: column;
+      letter-spacing: 1px;
 
-  align-items: center;
+    }
 
-  justify-content: center;
+    .result {
 
-}
+      display: none;
 
-.chance-label {
+      margin: 0 0 14px;
 
-  font-size: 10px;
+      padding: 13px;
 
-  font-weight: 800;
+      border-radius: 12px;
 
-  color: var(--muted);
+      background: #241536;
 
-  letter-spacing: 1.5px;
+      text-align: center;
 
-}
+      line-height: 1.5;
 
-.percent {
+    }
 
-  font-size: clamp(40px, 12vw, 49px);
+    .result.visible { display: block; }
 
-  font-weight: 1000;
+    .result strong { display: block; font-size: 18px; }
 
-  letter-spacing: -2px;
+    .result small { color: var(--muted); }
 
-  margin: 6px 0;
+    .footnote {
 
-  text-shadow: 0 0 22px #a855f765;
+      margin: 18px 2px 0;
 
-}
+      color: #81768f;
 
-.percent small {
+      font-size: 10px;
 
-  font-size: 24px;
+      text-align: center;
 
-  color: var(--purple2);
+      line-height: 1.5;
 
-}
+    }
 
-.ring-status {
+    /* Окно выбора скина */
 
-  color: var(--purple2);
+    .modal {
 
-  font-size: 10px;
+      position: fixed;
 
-  font-weight: 800;
+      z-index: 10;
 
-  letter-spacing: 1px;
+      inset: 0;
 
-}
+      display: none;
 
-.main-button {
+      align-items: center;
 
-  display: block;
+      justify-content: center;
 
-  width: 100%;
+      padding: 15px;
 
-  border: 0;
+      background: #05030be8;
 
-  border-radius: 13px;
+    }
 
-  padding: 17px 12px;
+    .modal.open { display: flex; }
 
-  background: linear-gradient(100deg, #7540eb, #a855f7);
+    .modal-box {
 
-  color: white;
+      display: flex;
 
-  font-size: 14px;
+      flex-direction: column;
 
-  font-weight: 900;
+      width: 100%;
 
-  letter-spacing: 1px;
+      max-width: 480px;
 
-  box-shadow: 0 7px 25px #8b5cf637, inset 0 1px #ffffff30;
+      max-height: 85vh;
 
-  cursor: pointer;
+      padding: 18px;
 
-  transition: transform .15s, opacity .2s;
+      border: 1px solid #48305f;
 
-}
+      border-radius: 20px;
 
-.main-button:active {
+      background: #120d1d;
 
-  transform: scale(.98);
+    }
 
-}
+    .modal-top {
 
-.main-button:disabled {
+      display: flex;
 
-  opacity: .7;
+      justify-content: space-between;
 
-  cursor: wait;
+      align-items: center;
 
-}
+      gap: 10px;
 
-.note {
+      margin-bottom: 12px;
 
-  color: #77718e;
+    }
 
-  font-size: 10px;
+    .modal-top h2 { margin: 0; font-size: 19px; }
 
-  line-height: 1.6;
+    .close-button {
 
-  text-align: center;
+      padding: 6px 10px;
 
-  margin: 13px 4px 2px;
+      color: white;
 
-}
+      border: 1px solid #493458;
 
-.result {
+      border-radius: 9px;
 
-  display: none;
+      background: #251832;
 
-  margin-top: 15px;
+      cursor: pointer;
 
-  padding: 13px;
+    }
 
-  text-align: center;
+    .search {
 
-  border-radius: 12px;
+      width: 100%;
 
-  background: #8b5cf612;
+      padding: 13px;
 
-  border: 1px solid #8b5cf638;
+      margin-bottom: 12px;
 
-  font-size: 12px;
+      color: white;
 
-  line-height: 1.7;
+      border: 1px solid #493458;
 
-}
+      border-radius: 10px;
 
-.result.show {
+      outline: none;
 
-  display: block;
+      background: #0b0811;
 
-  animation: appear .3s ease;
+      font-size: 14px;
 
-}
+    }
 
-.result strong {
+    .skin-list {
 
-  color: var(--purple2);
+      display: grid;
 
-}
+      grid-template-columns: repeat(2, minmax(0, 1fr));
 
-.bottom-stats {
+      gap: 10px;
 
-  display: grid;
+      overflow-y: auto;
 
-  grid-template-columns: 1fr 1fr;
+      min-height: 120px;
 
-  gap: 10px;
+    }
 
-  margin-top: 13px;
+    .skin-option {
 
-}
+      min-width: 0;
 
-.stat {
+      padding: 10px;
 
-  padding: 14px;
+      color: white;
 
-  background: #13111f;
+      border: 1px solid #39264b;
 
-  border: 1px solid #292239;
+      border-radius: 12px;
 
-  border-radius: 13px;
+      background: #1b1327;
 
-}
+      text-align: left;
 
-.stat-title {
+      cursor: pointer;
 
-  color: var(--muted);
+    }
 
-  font-size: 10px;
+    .skin-option img {
 
-}
+      width: 100%;
 
-.stat-value {
+      height: 85px;
 
-  font-size: 20px;
+      object-fit: contain;
 
-  font-weight: 900;
+    }
 
-  margin-top: 6px;
+    .skin-option div {
 
-}
+      margin-top: 6px;
 
-.history {
+      font-size: 12px;
 
-  margin-top: 17px;
+      font-weight: 700;
 
-}
+      line-height: 1.4;
 
-.history-head {
+      overflow-wrap: anywhere;
 
-  display: flex;
+    }
 
-  justify-content: space-between;
+    .status {
 
-  align-items: center;
+      grid-column: 1 / -1;
 
-  gap: 8px;
+      padding: 18px 5px;
 
-  margin-bottom: 12px;
+      color: var(--muted);
 
-}
+      font-size: 13px;
 
-.history-head strong {
+      text-align: center;
 
-  font-size: 13px;
+      line-height: 1.6;
 
-}
+    }
 
-.clear {
+    @media (max-width: 360px) {
 
-  border: 0;
+      .wheel-wrap { width: 205px; height: 205px; }
 
-  background: none;
+      h1 { font-size: 26px; }
 
-  color: var(--muted);
+    }
 
-  font-size: 11px;
-
-  cursor: pointer;
-
-}
-
-.history-list {
-
-  display: flex;
-
-  flex-direction: column;
-
-  gap: 7px;
-
-}
-
-.history-item {
-
-  display: flex;
-
-  justify-content: space-between;
-
-  align-items: center;
-
-  gap: 10px;
-
-  background: #141120;
-
-  border: 1px solid #292239;
-
-  border-radius: 11px;
-
-  padding: 12px;
-
-  font-size: 12px;
-
-}
-
-.history-item span {
-
-  color: var(--muted);
-
-}
-
-.history-item b {
-
-  color: var(--purple2);
-
-}
-
-.empty {
-
-  padding: 19px 10px;
-
-  text-align: center;
-
-  color: #716a87;
-
-  font-size: 12px;
-
-}
-
-.footer {
-
-  text-align: center;
-
-  color: #59536f;
-
-  font-size: 10px;
-
-  letter-spacing: 2px;
-
-  padding: 25px 0 5px;
-
-}
-
-@keyframes appear {
-
-  from { opacity: 0; transform: translateY(5px); }
-
-  to { opacity: 1; transform: translateY(0); }
-
-}
-
-@keyframes glow {
-
-  from { filter: brightness(1); }
-
-  to { filter: brightness(1.35); }
-
-}
-
-.ring.spinning {
-
-  animation: glow .35s infinite alternate;
-
-}
-
-@media (max-width: 370px) {
-
-  .app { padding-left: 11px; padding-right: 11px; }
-
-  .card { padding: 13px; }
-
-  .upgrade-grid { grid-template-columns: minmax(0, 1fr) 22px minmax(0, 1fr); }
-
-  .skin { padding: 8px 4px; min-height: 140px; }
-
-  .skin-name { font-size: 11px; }
-
-  .ring { width: 180px; height: 180px; }
-
-}
-
-@media (prefers-reduced-motion: reduce) {
-
-  *, *::before, *::after {
-
-    animation-duration: .01ms !important;
-
-    transition-duration: .01ms !important;
-
-  }
-
-}
-
-</style>
+  </style>
 
 </head>
 
 <body>
 
-<div class="app">
+  <main class="app">
 
-  <header class="header">
+    <header>
 
-    <div class="logo">UP<span>!</span></div>
-<div class="online"><span class="dot"></span> MINI APP</div>
+      <div class="logo">UP<span>!</span></div>
 
-  </header>
+      <div class="demo-tag">DEMO MODE</div>
 
-  <nav class="tabs">
+    </header>
 
-    <button class="tab active" type="button">⚡ UP!</button>
+    <section class="welcome">
 
-    <button class="tab" type="button" id="chanceTab">◉ Шанс</button>
+      <h1>CS2 Upgrade</h1>
 
-    <button class="tab" type="button" id="historyTab">◷ История</button>
+      <p class="subtitle">
+Выбери скин и запусти демонстрационное колесо
 
-  </nav>
+      </p>
 
-  <section class="hero">
+    </section>
 
-    <div class="crown">♛</div>
+    <section class="panel">
 
-    <h1>UP<span>!</span></h1>
+      <button class="select-button" id="openPicker">
 
-    <p>Попробуй удачу и испытай свой шанс</p>
-
-  </section>
-
-  <main>
-
-    <section class="card">
-
-      <div class="section-label">✦ · АПГРЕЙД</div>
-
-      <div class="upgrade-grid">
-
-        <div class="skin">
-
-          <div class="skin-icon">🔫</div>
-
-          <div class="skin-name">ТВОЙ СКИН</div>
-
-          <div class="skin-desc">Начальный уровень</div>
-
-        </div>
-
-        <div class="arrow">➜</div>
-
-        <div class="skin target">
-
-          <div class="skin-icon">💎</div>
-
-          <div class="skin-name">UPGRADE</div>
-
-          <div class="skin-desc">Новая цель</div>
-
-        </div>
-
-      </div>
-
-      <div class="chance-wrap">
-
-        <div class="ring" id="ring">
-
-          <div class="ring-inner">
-
-            <div class="chance-label">ТВОЙ ШАНС</div>
-
-            <div class="percent">
-
-              <span id="percent">--</span><small>%</small>
-
-            </div>
-
-            <div class="ring-status" id="ringStatus">READY TO UP</div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-      <button class="main-button" id="upgrade" type="button">
-
-        ⚡ ИСПЫТАТЬ УДАЧУ
+        🎯 Выбрать скин
 
       </button>
 
-      <div class="note">
+      <p class="hint">
 
-        Демонстрационная случайная генерация.<br>
+        Выбери предмет из каталога. Подключения к Steam-инвентарю пока нет.
 
-        Процент не является реальной вероятностью выигрыша.
+      </p>
+
+      <div class="selected-card" id="selectedCard">
+
+        <div class="skin-label">Выбранный скин</div>
+
+        <img id="selectedImage" alt="Выбранный скин">
+
+        <div class="skin-name" id="selectedName"></div>
+
+        <button class="change-button" id="changeSkin">Изменить скин</button>
+
+      </div>
+
+    </section>
+
+    <section class="panel" id="upgrade">
+
+      <h2 class="section-title">Колесо апгрейда</h2>
+
+      <p class="section-subtitle">Случайный шанс для демонстрации</p>
+
+      <div class="wheel-wrap">
+
+        <div class="pointer"></div>
+
+        <div class="wheel" id="wheel"></div>
+
+        <div class="wheel-center">
+
+          <div class="chance" id="chance">—%</div>
+
+          <div class="chance-caption">ШАНС ДЕМО</div>
+
+        </div>
 
       </div>
 
       <div class="result" id="result" aria-live="polite"></div>
 
+      <button class="spin-button" id="spinButton">
+
+        КРУТИТЬ КОЛЕСО
+
+      </button>
+
+      <p class="hint">
+
+        Результат случайный и не связан с реальными предметами или шансами Steam.
+
+      </p>
+
     </section>
 
-    <div class="bottom-stats">
+    <p class="footnote">
 
-      <div class="stat">
+      UP! — демонстрационный проект. Скины не передаются, ставки и платежи отсутствуют.
 
-        <div class="stat-title">ПОПЫТКИ</div>
+    </p>
 
-        <div class="stat-value" id="attempts">0</div>
+  </main>
+
+  <div class="modal" id="pickerModal">
+
+    <div class="modal-box">
+
+      <div class="modal-top">
+
+        <h2>Выбери скин CS2</h2>
+
+        <button class="close-button" id="closePicker">Закрыть</button>
 
       </div>
 
-      <div class="stat">
+      <input
 
-        <div class="stat-title">ПОСЛЕДНИЙ РЕЗУЛЬТАТ</div>
+        class="search"
 
-        <div class="stat-value" id="lastResult">—</div>
+        id="search"
+
+        type="search"
+
+        placeholder="Поиск скина..."
+
+        autocomplete="off"
+
+      >
+
+      <div class="skin-list" id="skinList">
+
+        <div class="status">Загружаем каталог скинов...</div>
 
       </div>
 
     </div>
 
-    <section class="history card" id="history">
+  </div>
 
-      <div class="history-head">
+  <script>
 
-        <strong>◷ Последние попытки</strong>
-
-        <button class="clear" id="clearHistory" type="button">
-
-          Очистить
-
-        </button>
-
-      </div>
-
-      <div class="history-list" id="historyList">
-
-        <div class="empty">Здесь появятся твои результаты</div>
-
-      </div>
-
-    </section>
-
-  </main>
-
-  <footer class="footer">UP! · UPGRADE YOUR STYLE</footer>
-
-</div>
-
-<script>
-
-(() => {
-
-  const tg = window.Telegram?.WebApp;
-
-  try {
+    const tg = window.Telegram?.WebApp;
 
     tg?.ready();
 
     tg?.expand();
 
-  } catch (_) {}
+    const API_URL =
 
-  const $ = id => document.getElementById(id);
+      "https://bymykel.github.io/CSGO-API/api/en/skins.json";
 
-  const ring = $("ring");
+    const openPicker = document.getElementById("openPicker");
 
-  const percent = $("percent");
+    const closePicker = document.getElementById("closePicker");
 
-  const ringStatus = $("ringStatus");
+    const changeSkin = document.getElementById("changeSkin");
 
-  const button = $("upgrade");
+    const modal = document.getElementById("pickerModal");
 
-  const resultBox = $("result");
+    const skinList = document.getElementById("skinList");
 
-  const attemptsEl = $("attempts");
+    const search = document.getElementById("search");
 
-  const lastResultEl = $("lastResult");
+    const selectedCard = document.getElementById("selectedCard");
 
-  const historyList = $("historyList");
+    const selectedImage = document.getElementById("selectedImage");
 
-  let busy = false;
+    const selectedName = document.getElementById("selectedName");
 
-  let attempts = 0;
+    const upgrade = document.getElementById("upgrade");
 
-  let lastResult = null;
+    const wheel = document.getElementById("wheel");
 
-  let history = [];
+    const chance = document.getElementById("chance");
 
-  function setChance(value) {
+    const result = document.getElementById("result");
 
-    percent.textContent = value;
+    const spinButton = document.getElementById("spinButton");
 
-    ring.style.setProperty("--angle", (value * 3.6) + "deg");
+    let skins = [];
 
-  }
+    let selectedSkin = null;
 
-  function randomPercent() {
+    let rotation = 0;
 
-    return Math.floor(Math.random() * 100) + 1;
+    let spinning = false;
 
-  }
+    function openModal() {
 
-  function renderHistory() {
+      modal.classList.add("open");
 
-    historyList.replaceChildren();
+      search.value = "";
 
-    if (history.length === 0) {
+      renderSkins();
 
-      const empty = document.createElement("div");
-
-      empty.className = "empty";
-
-      empty.textContent = "Здесь появятся твои результаты";
-
-      historyList.appendChild(empty);
-
-      return;
+      search.focus();
 
     }
 
-    history.forEach((value, index) => {
+    function hideModal() {
 
-      const row = document.createElement("div");
+      modal.classList.remove("open");
 
-      row.className = "history-item";
+    }
 
-      const left = document.createElement("span");
+    openPicker.addEventListener("click", openModal);
 
-      left.textContent = "Попытка №" + (attempts - index);
+    changeSkin.addEventListener("click", openModal);
 
-      const right = document.createElement("b");
+    closePicker.addEventListener("click", hideModal);
 
-      right.textContent = value + "%";
+    modal.addEventListener("click", (event) => {
 
-      row.append(left, right);
-
-      historyList.appendChild(row);
+      if (event.target === modal) hideModal();
 
     });
 
-  }
+    async function loadSkins() {
 
-  function showResult(value) {
-resultBox.replaceChildren();
+      try {
 
-    const title = document.createElement("strong");
+        const response = await fetch(API_URL);
 
-    title.textContent = value >= 75
+        if (!response.ok) {
 
-      ? "✦ ВЫСОКИЙ ПРОЦЕНТ!"
+          throw new Error("Не удалось загрузить каталог");
 
-      : value >= 40
+        }
 
-        ? "⚡ НЕПЛОХОЙ РЕЗУЛЬТАТ"
+        const data = await response.json();
 
-        : "✧ ПОПРОБУЙ ЕЩЁ РАЗ";
+        skins = data
 
-    const line = document.createElement("div");
+          .filter(item => item.name && item.image)
 
-    line.textContent = "Случайное число: " + value + "%";
+          .map(item => ({
 
-    resultBox.append(title, line);
+            id: item.id || item.name,
 
-    resultBox.classList.add("show");
+            name: item.name,
+image: item.image
 
-  }
+          }))
 
-  function runUpgrade() {
+          .filter((item, index, array) =>
 
-    if (busy) return;
+            array.findIndex(other => other.name === item.name) === index
 
-    busy = true;
+          );
 
-    button.disabled = true;
+        if (!skins.length) throw new Error("Каталог пуст");
 
-    button.textContent = "⟳ ГЕНЕРАЦИЯ...";
+        renderSkins();
 
-    ringStatus.textContent = "CALCULATING...";
+      } catch (error) {
 
-    ring.classList.add("spinning");
+        skinList.innerHTML = `
 
-    resultBox.classList.remove("show");
+          <div class="status">
 
-    try {
+            Не получилось загрузить каталог скинов.<br>
 
-      tg?.HapticFeedback?.impactOccurred("light");
+            Проверь подключение к интернету и обнови страницу.
 
-    } catch (_) {}
+            <br><br>
 
-    let ticks = 0;
+            Если ошибка повторяется, можно добавить собственный список скинов в код.
 
-    const animation = setInterval(() => {
+          </div>
 
-      setChance(randomPercent());
-
-      ticks++;
-
-      if (ticks >= 18) {
-
-        clearInterval(animation);
-
-        const value = randomPercent();
-
-        setChance(value);
-
-        attempts++;
-
-        lastResult = value;
-
-        history.unshift(value);
-
-        history = history.slice(0, 8);
-
-        attemptsEl.textContent = attempts;
-
-        lastResultEl.textContent = value + "%";
-
-        ringStatus.textContent = "RESULT READY";
-
-        showResult(value);
-
-        renderHistory();
-
-        ring.classList.remove("spinning");
-
-        button.disabled = false;
-
-        button.textContent = "↻ ПОПРОБОВАТЬ ЕЩЁ";
-
-        busy = false;
-
-        try {
-
-          tg?.HapticFeedback?.impactOccurred("medium");
-
-        } catch (_) {}
+        `;
 
       }
 
-    }, 75);
+    }
 
-  }
+    function renderSkins() {
 
-  button.addEventListener("click", runUpgrade);
+      if (!skins.length) return;
 
-  $("chanceTab").addEventListener("click", () => {
+      const query = search.value.trim().toLowerCase();
 
-    document.querySelector(".chance-wrap").scrollIntoView({
+      const filtered = skins
 
-      behavior: "smooth",
+        .filter(item => item.name.toLowerCase().includes(query))
 
-      block: "center"
+        .slice(0, 100);
+
+      if (!filtered.length) {
+
+        skinList.innerHTML =
+
+          '<div class="status">Ничего не найдено. Попробуй другое название.</div>';
+
+        return;
+
+      }
+
+      skinList.innerHTML = "";
+
+      filtered.forEach(skin => {
+
+        const button = document.createElement("button");
+
+        button.className = "skin-option";
+
+        button.type = "button";
+
+        const img = document.createElement("img");
+
+        img.src = skin.image;
+
+        img.alt = skin.name;
+
+        img.loading = "lazy";
+
+        const name = document.createElement("div");
+
+        name.textContent = skin.name;
+
+        button.append(img, name);
+
+        button.addEventListener("click", () => selectSkin(skin));
+
+        skinList.appendChild(button);
+
+      });
+
+    }
+
+    search.addEventListener("input", renderSkins);
+
+    function selectSkin(skin) {
+
+      selectedSkin = skin;
+
+      selectedImage.src = skin.image;
+
+      selectedImage.alt = skin.name;
+
+      selectedName.textContent = skin.name;
+
+      selectedCard.classList.add("visible");
+
+      upgrade.classList.add("visible");
+
+      chance.textContent = "—%";
+
+      result.classList.remove("visible");
+
+      result.textContent = "";
+
+      wheel.style.transition = "none";
+
+      wheel.style.transform = "rotate(0deg)";
+
+      rotation = 0;
+
+      hideModal();
+
+      tg?.HapticFeedback?.selectionChanged();
+
+      setTimeout(() => {
+
+        wheel.style.transition =
+
+          "transform 3.5s cubic-bezier(.12,.72,.12,1)";
+
+      }, 50);
+
+    }
+
+    spinButton.addEventListener("click", () => {
+
+      if (!selectedSkin || spinning) return;
+
+      spinning = true;
+
+      spinButton.disabled = true;
+
+      spinButton.textContent = "КОЛЕСО КРУТИТСЯ...";
+
+      result.classList.remove("visible");
+
+      chance.textContent = "…";
+
+      // Только демонстрационная случайная величина.
+
+      const demoChance = Math.floor(Math.random() * 95) + 1;
+
+      const roll = Math.random() * 100;
+
+      const demoSuccess = roll < demoChance;
+
+      // Колесо вращается визуально; результат не определяется его сектором.
+
+      rotation += 1800 + Math.floor(Math.random() * 720);
+
+      wheel.style.transform = `rotate(${rotation}deg)`;
+
+      setTimeout(() => {
+
+        chance.textContent = demoChance + "%";
+
+        result.innerHTML = "";
+
+        const title = document.createElement("strong");
+
+        title.textContent = demoSuccess
+
+          ? "✨ Успех в демо!"
+
+          : "Попробуй ещё раз";
+
+        const details = document.createElement("small");
+
+        details.textContent =
+
+          "Скин: " + selectedSkin.name +
+
+          " · Это случайная симуляция, не реальный апгрейд.";
+
+        result.append(title, details);
+
+        result.classList.add("visible");
+
+        spinning = false;
+
+        spinButton.disabled = false;
+
+        spinButton.textContent = "КРУТИТЬ ЕЩЁ РАЗ";
+
+        tg?.HapticFeedback?.notificationOccurred(
+
+          demoSuccess ? "success" : "warning"
+
+        );
+
+      }, 3600);
 
     });
 
-  });
+    loadSkins();
 
-  $("historyTab").addEventListener("click", () => {
-
-    $("history").scrollIntoView({
-
-      behavior: "smooth",
-
-      block: "start"
-
-    });
-
-  });
-
-  $("clearHistory").addEventListener("click", () => {
-
-    history = [];
-
-    attempts = 0;
-
-    lastResult = null;
-
-    attemptsEl.textContent = "0";
-
-    lastResultEl.textContent = "—";
-
-    resultBox.classList.remove("show");
-
-    setChance("--");
-
-    ringStatus.textContent = "READY TO UP";
-
-    renderHistory();
-
-  });
-
-  setChance("--");
-
-})();
-
-</script>
+  </script>
 
 </body>
 
